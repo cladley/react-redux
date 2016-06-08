@@ -9,7 +9,11 @@ export default function startServer(store) {
 
 
     io.on('connection', (socket) => {
+        console.log("Connection made");
+        // Sending to the client
         socket.emit('state', store.getState().toJS());
-        socket.on('action', store.dispatch.bind(store))''
+
+        // Coming from the client
+        socket.on('action', store.dispatch.bind(store));
     });
 }
